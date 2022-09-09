@@ -1,0 +1,29 @@
+# 1. What are RESTful API
+REST -- Representational State Transfer
+  # what makes an API RESTFUL
+   -- BENEFITS--
+   ``` Fast
+   ```Scaleble
+   ```Reliable
+   ```Easy to understand
+   ```Easy to change --
+        -- these are the rules that makes an API RESTFUL
+
+    -- MAIN CONCEPTS
+    ``` RESOURCES
+    ```REPRESENTATIONS
+    ```HTTP METHODS
+  
+2. RESOURCES
+-- These are like -- products, orders in our application. They are acccesed by a URL.
+
+3. REPRESENTATIONS
+-- The data from a resource can be returned in like : HMTL, XML, JSON
+
+4. HTTP METHODS
+-- Endpoints are projected to clients -- 
+GET= getting a collection
+POST= create
+PUT= updating
+PATCH= Update part of a resource
+DELETE
