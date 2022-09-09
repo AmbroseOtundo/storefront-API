@@ -36,3 +36,42 @@ DELETE
 #Serializer
 --convert a model instance to a dictionary -- in 
   other words turns models or classes to JSON objects
+
+  # make decimal value to be a decimal value -- add this in settings
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING':False
+}
+-- example response  -- 
+                {
+                    "id": 1,
+                    "title": "Bread Ww Cluster",
+                    "unit_price": 4.0
+                }
+
+
+  -- asking for an object that does not exist
+first we from rest_framework import status
+wrap the code in a try -- except function
+--Example
+       try:
+        product = Product.objects.get(pk=id)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)
+    except Product.DoesNotExist:
+        return Response (status=status.HTTP_404_NOT_FOUND)
+
+# we have a shortcut for exposing the errors
+    from django.shortcuts import get_object_or_404
+    
+      @api_view()
+      def product_detail(request, id):
+          product = get_object_or_404(Product, pk=id)
+          serializer = ProductSerializer(product)
+          return Response(serializer.data)
+        
+# Returning all our products
+@api_view()
+def product_list(request):
+    queryset = Product.objects.all()
+    serializer = ProductSerializer(queryset, many=True)
+    return Response(serializer.data)
