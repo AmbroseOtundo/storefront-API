@@ -75,3 +75,5 @@ def product_list(request):
     queryset = Product.objects.all()
     serializer = ProductSerializer(queryset, many=True)
     return Response(serializer.data)
+
+#  Creatinng custom Serialiezer fields
