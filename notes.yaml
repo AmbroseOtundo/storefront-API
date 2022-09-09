@@ -101,3 +101,15 @@ class ProductSerializer(serializers.Serializer):
     --String
     --Nested
     --Hyperlink -- i love this
+
+# Model serializers
+Helps us reduce repetition
+we use the meta class
+  class ProductSerializer(serializers.ModelSerializer): #must include Model to the serializer
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'unit_price', 'collection']
+
+
+# Deserializing Objects
+--
