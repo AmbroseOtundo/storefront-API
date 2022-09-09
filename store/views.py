@@ -1,8 +1,13 @@
-import http
-from http.client import HTTPResponse
 from django.shortcuts import render
-from django.http import HTTPResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response # this is for the API
 
-def product_list():
-    return HTTPResponse('ok')
+@api_view()
+def product_list(request):
+    return Response('ok')
+
+
+@api_view()
+def product_detail(request, id):
+    return Response('ok')
 

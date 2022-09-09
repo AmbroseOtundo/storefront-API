@@ -27,3 +27,12 @@ POST= create
 PUT= updating
 PATCH= Update part of a resource
 DELETE
+
+# adding views to the store app
+-- first add the views by importing http response -- small letter response and not capital letter
+-- second create the urls.py file and from  the . *(current dir) import views
+-- go to the root folder for the project -- (storefront) add url link  --)path('store/', include('store.urls')),
+
+#Serializer
+--convert a model instance to a dictionary -- in 
+  other words turns models or classes to JSON objects
