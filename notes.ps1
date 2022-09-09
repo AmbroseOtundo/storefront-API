@@ -112,4 +112,15 @@ we use the meta class
 
 
 # Deserializing Objects
---
+--@api_view(['GET', 'POST']) #we include the GET AND POST methods
+def product_list(request):
+    if request.method == 'GET':
+        # this prevents lazy loading. ref in serializer collection object
+        queryset = Product.objects.select_related('collection').all() 
+        serializer = ProductSerializer(queryset, many=True, context={'request':request})
+        return Response(serializer.data)
+        # deserializing happens here.
+    elif request.method == 'POST':
+        serializer = ProductSerializer(data=request.data)
+        # serializer.validated_data
+        return Response('ok')
