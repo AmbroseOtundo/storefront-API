@@ -77,3 +77,27 @@ def product_list(request):
     return Response(serializer.data)
 
 #  Creatinng custom Serialiezer fields
+class ProductSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=255)
+    # source helps django look for the source of the price 
+    # becuause in the product class we do not have the price and instead we have unit_price
+    price = serializers.DecimalField(max_digits=6, decimal_places=2, source = 'unit_price') 
+    # custome serializer
+    price_with_tax = serializers.SerializerMethodField(method_name='calculate_tax')
+    # method to return price_with_tax
+    def calculate_tax(self, product: Product):
+        return product.unit_price * Decimal(1.1)
+     
+    to convert the decimal price, we import Decimal from decimal and wrap the the float with the class Decimal
+
+# Serializing Relationships
+ collection = serializers.PrimaryKeyRelatedField(
+        queryset = Collection.objects.all()
+    )
+
+    The four ways to serialize an object
+    --Primary
+    --String
+    --Nested
+    --Hyperlink -- i love this
