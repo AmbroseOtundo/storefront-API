@@ -124,3 +124,17 @@ def product_list(request):
         serializer = ProductSerializer(data=request.data)
         # serializer.validated_data
         return Response('ok')
+
+# Validating Data when deserializing
+   if serializer.is_valid():
+            serializer.validated_data
+            return Response('ok')
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ -- A more cleaner way to validate the data
+   serializer.is_valid(raise_exception=True)
+        serializer.validated_data
+        return Response('ok')
+
+# Saving data in the DB
+ serializer.save()
