@@ -7,8 +7,8 @@ from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import status
 from rest_framework.response import Response
-from  .models import Collection, OrderItem, Product
-from .serializers import ProductSerializer, CollectionSerializer
+from  .models import Collection, OrderItem, Product, Review
+from .serializers import ProductSerializer, CollectionSerializer, ReviewSerializer
 from store import serializers
 
 
@@ -49,5 +49,8 @@ class CollectionViewSet(ModelViewSet):
         return super().destroy(request, *args, **kwargs)   
 
 
+class ReviewViewSet(ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
 
 

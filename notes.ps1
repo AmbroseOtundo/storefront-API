@@ -225,3 +225,12 @@ router.register('product', views.ProductViewSet)
 -- create a model class
 -- create a migration
 -- Apply the migration
+
+-- building the API
+--Create the serializer
+-- create a view
+-- register a route
+ 
+
+ -- Nested Routers
+ 
