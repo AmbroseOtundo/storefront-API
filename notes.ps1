@@ -220,3 +220,8 @@ class ProductViewSet(ModelViewSet):
 router = SimpleRouter()
 router.register('product', views.ProductViewSet)
 
+# Reviews API
+
+-- create a model class
+-- create a migration
+-- Apply the migration
