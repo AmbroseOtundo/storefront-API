@@ -49,8 +49,25 @@ class CollectionViewSet(ModelViewSet):
         return super().destroy(request, *args, **kwargs)   
 
 
+
 class ReviewViewSet(ModelViewSet):
-    queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        return Review.objects.filter(product_id=self.kwargs['product_pk'])
+
+    def get_serializer_context(self):
+        return {'product_id': self.kwargs['product_pk']}
+
+class ReviewViewSet(ModelViewSet):
+    serializer_class = ReviewSerializer
+    def get_queryset(self):
+        return Review.objects.filter(product_id=self.kwargs['product_pk'])
+
+        # """
+        # It returns a dictionary with the key 'product_id' and the value of the product_pk argument
+        # """
+    def get_serializer_context(self):
+        return {'product_id': self.kwargs['product_pk']}
 
 
