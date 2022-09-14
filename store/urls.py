@@ -5,7 +5,7 @@ from . import views
 
 # Creating a router for the products and collections.
 router = routers.DefaultRouter()
-router.register('products', views.ProductViewSet)
+router.register('products', views.ProductViewSet, basename='products')
 router.register('collections', views.CollectionViewSet)
 
 # Creating a nested router.

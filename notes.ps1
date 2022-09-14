@@ -233,4 +233,49 @@ router.register('product', views.ProductViewSet)
  
 
  -- Nested Routers
- 
+  -- https://github.com/alanjds/drf-nested-routers
+  pip install drf-nested-routers
+# Creating a router for the products and collections.
+router = routers.DefaultRouter()
+router.register('products', views.ProductViewSet)
+router.register('collections', views.CollectionViewSet)
+
+# Creating a nested router.
+products_router = routers.NestedDefaultRouter(router, 'products', lookup='product_pk')
+products_router.register('reviews', views.ReviewViewSet, basename='product-reviews')
+
+urlpatterns = router.urls + products_router.urls
+
+# Filtering products
+
+def get_queryset(self):
+        queryset = Product.objects.all()
+        collection_id = self.request.query_params.get('collection_id')
+        if collection_id is not None:
+            queryset = queryset.filter(collection_id=collection_id)
+        return queryset
+
+# Generic Filtering
+--we use Django Filter
+--pip install django-filter
+-- we add it in the list of installed apps : django_filters
+-- we import from django_filters.rest_framework import DjangoFilterBackend
+
+        -- queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['collection_id']
+
+    # custom filter
+    
+    from .models import Product
+from django_filters.rest_framework import FilterSet
+-- for more info check the django filter documentation
+
+class ProductFilter(FilterSet):
+    class Meta:
+        model = Product
+        fields = {
+            'collection_id': ['exact'],
+            'unit_price':  ['gt', 'lt']
+        }
