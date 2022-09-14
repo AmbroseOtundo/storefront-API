@@ -279,3 +279,32 @@ class ProductFilter(FilterSet):
             'collection_id': ['exact'],
             'unit_price':  ['gt', 'lt']
         }
+
+# Searching
+-- from rest_framework.filters import SearchFilter
+--  search_fields = ['title', 'description']
+    
+        class ProductViewSet(ModelViewSet):
+            queryset = Product.objects.all()
+            serializer_class = ProductSerializer
+            filter_backends = [DjangoFilterBackend, SearchFilter]
+            filterset_class = ProductFilter
+            search_fields = ['title', 'description']
+# Sorting
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    ordering_fields = ['unit_price', 'last_update']
+
+# Pagination
+
+-- from rest_framework.pagination import PageNumberPagination
+-- we go to the settings
+--REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING':False,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+      'PAGE_SIZE':10,
+}
+
+# OR
+-- we can create a  new pagination file 

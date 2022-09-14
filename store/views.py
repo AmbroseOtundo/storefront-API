@@ -1,12 +1,13 @@
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.decorators import api_view
-from django.db.models.aggregates import Count
 from rest_framework.viewsets import ViewSet, ModelViewSet, ReadOnlyModelViewSet
 from rest_framework import status
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 from store.filters import ProductFilter
+from store.pagination import DefaultPagination
 from  .models import Collection, OrderItem, Product, Review
+from django.db.models.aggregates import Count
 from .serializers import ProductSerializer, CollectionSerializer, ReviewSerializer
 from store import serializers
 
@@ -14,16 +15,12 @@ from store import serializers
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ProductFilter
     search_fields = ['title', 'description']
+    ordering_fields = ['unit_price', 'last_update']
+    pagination_class = DefaultPagination
 
-
-# Sorting
-
-
-    
-     
     def get_serializer_context(self):
         return {'request':self.request}
     

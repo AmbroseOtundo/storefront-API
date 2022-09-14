@@ -144,6 +144,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # make decimal value to be a decimal value
 REST_FRAMEWORK = {
-    'COERCE_DECIMAL_TO_STRING':False
+    'COERCE_DECIMAL_TO_STRING':False,
 }
-
