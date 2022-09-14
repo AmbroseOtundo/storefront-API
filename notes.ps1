@@ -308,3 +308,15 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 
 # OR
 -- we can create a  new pagination file 
+pagination.py
+
+# Building A Shopping Cart API -- Designing and Implementing a Shopping Cart API (50m)
+# Design phase
+-- create a cart - POST /carts/  {} cart
+- add items to a cart - POST /carts/:id/items {prodId, qty} item
+- Update the items quantity - PATCH /cart/:id/items/:id {qty} {qty}
+- Remove items from cart
+- get a cart with its items -  GET /carts/:id {} cart
+- delete a cart -  GET /carts/:id {}  {}
+
+
