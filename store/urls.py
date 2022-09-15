@@ -1,3 +1,4 @@
+from cgitb import lookup
 from django.urls import path
 from rest_framework_nested import routers
 from . import views
@@ -11,10 +12,12 @@ router.register('carts', views.CartViewSet)
 # Creating a nested router.
 products_router = routers.NestedDefaultRouter(router, 'products', lookup='product')
 products_router.register('reviews', views.ReviewViewSet, basename='product-reviews')
+
 carts_router = routers.NestedDefaultRouter(router, 'carts', lookup='cart')
+carts_router.register('items', views.CartItemViewSet, basename='cart-items')
 
 
-urlpatterns = router.urls + products_router.urls
+urlpatterns = router.urls + products_router.urls + carts_router.urls
 
 # urlpatterns = [
 #     path('products/', views.ProductList.as_view( )),

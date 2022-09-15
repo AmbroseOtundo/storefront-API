@@ -7,9 +7,9 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from store.filters import ProductFilter
 from store.pagination import DefaultPagination
-from  .models import Cart, Collection, OrderItem, Product, Review
+from  .models import Cart, CartItem, Collection, OrderItem, Product, Review
 from django.db.models.aggregates import Count
-from .serializers import CartSerializer, ProductSerializer, CollectionSerializer, ReviewSerializer
+from .serializers import CartItemSerializer, CartSerializer, ProductSerializer, CollectionSerializer, ReviewSerializer
 from store import serializers
 
 
@@ -84,3 +84,8 @@ class CartViewSet(
                 RetrieveModelMixin):
     queryset = Cart.objects.prefetch_related('items__product').all()
     serializer_class = CartSerializer
+
+class CartItemViewSet(ModelViewSet):
+    serializer_class = CartItemSerializer
+    def get_queryset(self):
+        return CartItem.objects.filter(cart_id=self.kwargs['cart_pk']).select_related('product')
