@@ -318,5 +318,14 @@ pagination.py
 - Remove items from cart
 - get a cart with its items -  GET /carts/:id {} cart
 - delete a cart -  GET /carts/:id {}  {}
+#  create a datA model by add a constrain of using UUID
 
+# Creating the cart
+create a Serializer
+create a cview 
+create a route
+from rest_framework.mixins import CreateModelMixin
+from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
+
+# Getting the cart
 
