@@ -338,4 +338,6 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
         -- There is a big issue in creating it  mid way and the solution is we drop our database and recreate it again
 # Creating user profiles
   user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-  
+
+#   groups and permissions
+# creating custom
