@@ -334,4 +334,5 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
 # Django Authentication System
 #   -- Creating a User Model
         -- Extending the user model -- 
-        
+        -- As as best practice create the user model at the  start of your project.
+        -- There is a big issue in creating it  mid way and the solution is we drop our database and recreate it again
