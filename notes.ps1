@@ -336,3 +336,6 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
         -- Extending the user model -- 
         -- As as best practice create the user model at the  start of your project.
         -- There is a big issue in creating it  mid way and the solution is we drop our database and recreate it again
+# Creating user profiles
+  user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+  
