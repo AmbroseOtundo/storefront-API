@@ -330,3 +330,8 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
 # Getting the cart
 
 # adding a cart item
+
+# Django Authentication System
+#   -- Creating a User Model
+        -- Extending the user model -- 
+        
