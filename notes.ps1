@@ -363,3 +363,5 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
     }
     
     # Building the Profile API
+    # Logging in users -- AUTH users -- login endpoint -- jwt/create/ 
+    docs --  drf jwt docs -- checkout access and refresh tokens
