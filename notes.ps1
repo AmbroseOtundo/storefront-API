@@ -340,4 +340,26 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
   user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 #   groups and permissions
-# creating custom
+# creating custom user permissions
+
+# Authentication
+# Token Based AUTH -- 
+    # -- Adding the authenticatio Endpoints
+      -- DJOSER  library-- RESTful auth -- check the docs for installation
+      -- we have two Authentication engines;
+            -- Token Based Authentication -- use DB Table to store tokens
+            -- JSON Web Token Authentication -- Does not DB
+    # Using JWT Auth
+    -- go to the docs and look at JSON Web Authentication
+    -- pip install -U djangorestframework_simplejwt
+
+    # Registering new user
+    lets add a serializer.py in the core application
+    add this to settings : 
+    DJOSER = {
+        'SERIALIZERS':{
+            'user_create': 'core.serializers.UserCreateSerializer'
+        }
+    }
+    
+    # Building the Profile API
