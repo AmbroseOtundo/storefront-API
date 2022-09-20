@@ -3,12 +3,13 @@ from rest_framework.decorators import api_view
 from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, DestroyModelMixin, UpdateModelMixin
 from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from store.filters import ProductFilter
 from store.pagination import DefaultPagination
-from store.permissions import IsAdminOrReadOnly
+from store.permissions import IsAdminOrReadOnly, ViewCustomerHistoryPermmission
 from  .models import Cart, CartItem, Collection, Customer, OrderItem, Product, Review
 from django.db.models.aggregates import Count
 from .serializers import AddCartItemSerializer, CartItemSerializer, CartSerializer, CustomerSerializer, ProductSerializer, CollectionSerializer, ReviewSerializer, UpdateCartItemSerializer
@@ -111,6 +112,10 @@ class CustomerViewSet(ModelViewSet):
     serializer_class = CustomerSerializer
     # settting up permissions
     permission_classes = [IsAdminUser]
+
+    @action(detail=True, permission_classes=ViewCustomerHistoryPermmission)
+    def history(self, request, pk):
+        return Response('ok')
 
     def get_permissions(self):
         if self.request.method == 'GET':

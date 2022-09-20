@@ -7,3 +7,7 @@ class IsAdminOrReadOnly(BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return
         return bool(request.user and request.user.is_staff)
+
+class ViewCustomerHistoryPermmission(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('store.view_history')
