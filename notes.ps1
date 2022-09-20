@@ -386,3 +386,29 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
     
     -- get curent user profile or updating it 
         -- store/customers/me
+
+    # Applying Permissions
+    check drf docs permissions
+    -- REST_FRAMEWORK = {
+        'COERCE_DECIMAL_TO_STRING':False,
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework_simplejwt.authentication.JWTAuthentication',
+        ),
+        # this dictates the type of security but we can remove it and implement it to specific classes
+        'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.IsAuthenticated'
+        ]
+    }
+
+    # specific custom permissions
+    # Profile API
+class CustomerViewSet(CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+queryset = Customer.objects.all()
+serializer_class = CustomerSerializer
+# settting up permissions
+permission_classes = [IsAuthenticated]
+
+def get_permissions(self):
+    if self.request.method == 'GET':
+        return [AllowAny()]
+    return [IsAuthenticated]
