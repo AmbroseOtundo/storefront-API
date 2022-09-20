@@ -411,4 +411,7 @@ permission_classes = [IsAuthenticated]
 def get_permissions(self):
     if self.request.method == 'GET':
         return [AllowAny()]
-    return [IsAuthenticated]
+    return [IsAuthenticated()]
+
+# creating custom permissions
+    -- we use the permission.py file to call the permissions
