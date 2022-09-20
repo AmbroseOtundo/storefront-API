@@ -364,4 +364,25 @@ from rest_framework.viewsets import ViewSet, ModelViewSet, GenericViewSet
     
     # Building the Profile API
     # Logging in users -- AUTH users -- login endpoint -- jwt/create/ 
-    docs --  drf jwt docs -- checkout access and refresh tokens
+    docs --  djoser docs -- checkout access and refresh tokens
+    jwt/create 
+    -- storefront 
+   access -- eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY0MTExNzIwLCJpYXQiOjE2NjM2Nzk3MjAsImp0aSI6ImRmZjk0NzRkMTllYzRlNTI5MDUzODJkMDk4N2E1MTcwIiwidXNlcl9pZCI6MX0.nJqHIV62cLVE4KX8wpjWkx_KNNMnNEjxLAKVC4oDdFk
+   refresh -- eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY2Mzc2NjEyMCwiaWF0IjoxNjYzNjc5NzIwLCJqdGkiOiJhYWE0YWMxNDJiMjM0NDNlYTljMDQwZTljOWJiMTY2MiIsInVzZXJfaWQiOjF9.U8Y8AOwrCWoQimqm6S4-GXNxBbzcHEmnvUUGoDtR4OY
+
+   apitest
+   access eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY0MTE1MzUyLCJpYXQiOjE2NjM2ODMzNTIsImp0aSI6ImMyYTMzYjM0ZTM3YzQ2OWU4M2FlNzQxODI0MTRmMjUxIiwidXNlcl9pZCI6NX0.pexzGShpvyIHGtPHLEJS7oARsDnT8HQNuH0xGg00do8
+
+    # Inspecting json web tokens -- jwt.io
+     
+    # refreshing jwt token 
+    jwt/refresh
+    -- then we pass the refresh token
+
+    # Getting the current user
+    auth/users/me
+
+    -- add mod header extension to chrome.
+    
+    -- get curent user profile or updating it 
+        -- store/customers/me
