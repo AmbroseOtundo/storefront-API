@@ -428,4 +428,10 @@ DELETE     /orders/1
 # creating order items
 # deleting a cart item order
 # returning the created Order
-# Data Validation -- invalid cart , empty order
+# Data Validation -- invalid cart , empty order 
+
+# django signals 
+    -- pre_save
+    -- post_save
+    -- pre_delete
+    -- post_delete
