@@ -426,3 +426,5 @@ DELETE     /orders/1
 
 # Creating an Order
 # creating order items
+# deleting a cart item order
+# returning the created Order

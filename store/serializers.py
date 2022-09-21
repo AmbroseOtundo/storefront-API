@@ -133,3 +133,4 @@ class CreateOrderSerializer(serializers.Serializer):
         # It creates a list of order items and then creates them in bulk.
             OrderItem.objects.bulk_create(order_items)
             Order.objects.filter(pk=cart_id).delete()
+            return order
