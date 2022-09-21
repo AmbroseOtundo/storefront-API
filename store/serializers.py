@@ -1,6 +1,7 @@
 from django.db import transaction
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
+from .signals import order_created
 from decimal import Decimal
 from store.models import Cart, CartItem, Order, OrderItem, Product, Collection, Review, Customer
 
@@ -146,4 +147,6 @@ class CreateOrderSerializer(serializers.Serializer):
         # It creates a list of order items and then creates them in bulk.
             OrderItem.objects.bulk_create(order_items)
             Order.objects.filter(pk=cart_id).delete()
+            # Sending a signal to the order_created signal.
+            order_created.send_robust(self.__class__, order = order)
             return order
