@@ -415,3 +415,13 @@ def get_permissions(self):
 
 # creating custom permissions
     -- we use the permission.py file to call the permissions
+
+# Orders API
+# Orders Endpoint
+POST   /orders/         {cartId}  order
+GET       /orders/      {}          order[]
+GET       /orders/1     { }         order
+PATCH     /orders/1   
+DELETE     /orders/1  
+
+# Creating an Order
