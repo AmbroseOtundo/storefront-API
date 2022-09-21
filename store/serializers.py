@@ -1,4 +1,4 @@
-from dataclasses import field
+from itertools import product
 from rest_framework import serializers
 from decimal import Decimal
 from store.models import Cart, CartItem, Order, OrderItem, Product, Collection, Review, Customer
@@ -114,9 +114,20 @@ class OrderSerializer(serializers.ModelSerializer):
 class CreateOrderSerializer(serializers.Serializer):
     cart_id = serializers.UUIDField()
 
+       
+    # It creates an order and then creates an order item for each item in the cart.
     def save(self, **kwargs):
-       print(self.validated_data['cart_id'])
-       print(self.context['user_id'])
-
-       (customer,created) = Customer.objects.get_or_create(user_id=self.context['user_id'])
-       Order.objects.create(customer=customer)
+        (customer,created) = Customer.objects.get_or_create(user_id=self.context['user_id'])
+        order = Order.objects.create(customer=customer)
+        cart_items = CartItem.objects.select_related('product').filter(cart_id=self.validated_data['cart_id'])
+        order_items = [
+            OrderItem(
+                order = order,
+                product = item.product,
+                unit_price = item.product.unit_price,
+                quantity = item.quantity
+            ) for item in cart_items
+            ]
+       # It creates a list of order items and then creates them in bulk.
+        OrderItem.objects.bulk_create(order_items)
+       
