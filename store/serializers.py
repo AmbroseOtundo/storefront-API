@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from decimal import Decimal
 from store.models import Cart, CartItem, Order, OrderItem, Product, Collection, Review, Customer
@@ -114,6 +115,12 @@ class OrderSerializer(serializers.ModelSerializer):
 class CreateOrderSerializer(serializers.Serializer):
     cart_id = serializers.UUIDField()
 
+    def validate_cart_id(self, cart_id):
+        if Cart.objects.filter(pk=cart_id).exists():
+            raise ValidationError('No cart with given ID was found')
+        if CartItem.objects.filter(cart_id=cart_id).count() == 0:
+            raise serializers.ValidationError('The cart is empty')
+        return cart_id
        
     # It creates an order and then creates an order item for each item in the cart.
     def save(self, **kwargs):
